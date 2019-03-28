@@ -1,0 +1,13 @@
+1213232432432
+asdadafsfa
+qeqewqewqeqw
+fdfsdf
+dfsfsfffs
+asdadsa
+fdfdfsd
+dasasd
+gfgffh
+9998123
+454544
+cp aaa > aaaa.txt
+cp "" aaaa aaa > aaaa.txt

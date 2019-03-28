@@ -1,0 +1,13 @@
+1.dh_make --createorig
+
+2.修改changelog和control
+
+3.dpkg-buildpackage  -S
+
+4.bzr init
+
+5.bzr add debian/source/format
+
+6.bzr commit -m "Initial commit of Debian packaging."
+
+7.dput ppa:asysbang/work-more work-more_1.6-0ubuntu1_source.changes
