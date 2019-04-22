@@ -8,10 +8,21 @@ GdkPixbuf *create_pixbuf(const gchar* filename) {
 	GError *error = NULL;
 	pixbuf = gdk_pixbuf_new_from_file(filename, &error);
 	if (!pixbuf) {
-		fprintf(stderr, "%s\n", error->message);
+		fprintf(stderr, "=====%s\n", error->message);
 		g_error_free(error);
 	}
 	return pixbuf;
+}
+
+void show_about(GtkWidget *widget, gpointer label) {
+	printf("===show_about\n");
+	GtkWidget *dialog = gtk_about_dialog_new();
+	gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), "0.9");
+	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), "(c) Jan Bodnar");
+	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog), "Battery is a simple tool for battery checking.");
+	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog), "http://www.batteryhq.net");
+	gtk_dialog_run(GTK_DIALOG(dialog));
+	gtk_widget_destroy(dialog);
 }
 
 const gchar * WINDOW_TITLE;
@@ -54,16 +65,17 @@ void initMenu() {
 	gtk_box_pack_start(GTK_BOX(vbox), menubar, FALSE, FALSE, 1);
 
 	g_signal_connect(G_OBJECT(quit), "activate", G_CALLBACK(gtk_main_quit), NULL);
+	g_signal_connect(G_OBJECT(about), "activate", G_CALLBACK(show_about), NULL);
 }
 
 int initWindow() {
-	WINDOW_TITLE = "Make u work more";//pwd;
+	WINDOW_TITLE = "Make u work more"; //pwd;
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
 	gtk_container_set_border_width(GTK_CONTAINER(window), 0);
 	gtk_widget_set_size_request(window, 1024, 480);
 	gtk_window_set_title(GTK_WINDOW(window), WINDOW_TITLE);
-	gtk_window_set_icon(GTK_WINDOW(window), create_pixbuf("/usr/lib/work-more/img/icon.png"));
+	gtk_window_set_icon(GTK_WINDOW(window), create_pixbuf("~/.workmore/img/icon.png"));
 	initMenu();
 	return 0;
 }

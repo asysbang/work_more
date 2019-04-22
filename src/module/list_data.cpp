@@ -17,7 +17,13 @@ int loadDataFromFile() {
 }
 
 int loadListData(char** list) {
-	ifstream fin("/usr/lib/work-more/cfg/list.txt");
+	ifstream fin("~/.work-more/cfg/list.txt");
+	if (fin) {
+		cout << "==1111="  << endl;
+	} else {
+		cout << "==2222="  << endl;
+		ifstream fin("/usr/lib/work-more/cfg/list.txt");
+	}
 	int i = 0;
 	string str;
 	while (getline(fin, str)) {

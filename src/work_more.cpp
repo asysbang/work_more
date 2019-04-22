@@ -4,9 +4,6 @@
 using namespace std;
 char* pwd;
 int main(int argc, char *argv[]) {
-    pwd=(char *)malloc(FILEPATH_MAX);
-    getcwd(pwd,FILEPATH_MAX);
-    printf("%s",pwd);
 	initGui(argc,argv) ;
 	return 0;
 }
